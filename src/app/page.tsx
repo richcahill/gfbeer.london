@@ -1,6 +1,7 @@
 import BeerMap from "@/components/beer-map";
 import Logo from "@/components/logo";
 import type { bar } from "@/types/bar";
+import { getGoogleSheetData } from "@/utils/gsheets";
 
 const dummyBars: bar[] = [
   {
@@ -8,7 +9,6 @@ const dummyBars: bar[] = [
     lat: 51.51712983648306,
     long: -0.15060431327103696,
     lastUpdated: "2021-09-01",
-    // beers: ["Peroni", "Budweiser"],
     onTap: true,
     onBottle: true,
   },
@@ -17,13 +17,21 @@ const dummyBars: bar[] = [
     lat: 51.52993804256535,
     long: -0.10547969598650535,
     lastUpdated: "2021-09-03",
-    // beers: ["Peroni", "Budweiser"],
     onTap: false,
     onBottle: true,
   },
 ];
 
-export default function Home() {
+async function getBars() {
+  const data = await getGoogleSheetData();
+  // TODO, you need to map this data to the bar type
+  return data;
+}
+
+export default async function Home() {
+  const barData = await getBars();
+  console.log(barData);
+
   return (
     <main className="w-screen h-screen relative">
       <div className="h-32 p-4 z-10 relative flex items-start">
