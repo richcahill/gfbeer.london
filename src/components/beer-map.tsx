@@ -1,14 +1,14 @@
 // beer-map.tsx
 "use client";
 
-import Map from "react-map-gl";
+import Map, { NavigationControl, GeolocateControl } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 export default function BeerMap() {
   const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
   return (
-    <div className={"w-full h-full fixed z-0"}>
+    <div className={"w-screen h-screen absolute inset-0 z-0"}>
       <Map
         mapboxAccessToken={mapboxToken}
         mapStyle="mapbox://styles/mapbox/streets-v12"
@@ -25,7 +25,9 @@ export default function BeerMap() {
         minZoom={3}
         attributionControl={false}
         logoPosition="bottom-right"
-      ></Map>
+      >
+        <GeolocateControl position="bottom-left" />
+      </Map>
     </div>
   );
 }
