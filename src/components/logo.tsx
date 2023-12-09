@@ -1,5 +1,5 @@
 const Logo = ({ size, color }: { size?: string; color?: string }) => {
-  color = color || "#dabf42";
+  color = color || "#f7ce64";
   return (
     <svg
       height={size || "19"}

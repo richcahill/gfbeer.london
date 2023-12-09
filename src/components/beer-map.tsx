@@ -1,7 +1,7 @@
 // beer-map.tsx
 "use client";
 
-import Map, { NavigationControl, GeolocateControl } from "react-map-gl";
+import Map, { NavigationControl, GeolocateControl, Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 export default function BeerMap() {
@@ -27,6 +27,9 @@ export default function BeerMap() {
         logoPosition="bottom-right"
       >
         <GeolocateControl position="bottom-left" />
+        <Marker latitude={51.5073} longitude={-0.12755}>
+          <div className={"bg-red-500 p-2 rounded-full hover:scale-105"}></div>
+        </Marker>
       </Map>
     </div>
   );
