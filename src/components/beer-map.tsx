@@ -1,0 +1,31 @@
+// beer-map.tsx
+"use client";
+
+import Map from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+
+export default function BeerMap() {
+  const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
+
+  return (
+    <div className={"w-full h-full fixed z-0"}>
+      <Map
+        mapboxAccessToken={mapboxToken}
+        mapStyle="mapbox://styles/mapbox/streets-v12"
+        initialViewState={{
+          latitude: 51.5073,
+          longitude: -0.12755,
+          zoom: 10,
+        }}
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+        maxZoom={20}
+        minZoom={3}
+        attributionControl={false}
+        logoPosition="bottom-right"
+      ></Map>
+    </div>
+  );
+}
