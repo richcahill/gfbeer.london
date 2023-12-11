@@ -1,7 +1,7 @@
 import BeerMap from "@/components/beer-map";
 import Logo from "@/components/logo";
 import type { bar } from "@/types/bar";
-import { getGoogleSheetData } from "@/app/api/gsheets.ts/route";
+import { getGoogleSheetData } from "@/utils/gsheets";
 
 async function getBars() {
   const data = await getGoogleSheetData();
