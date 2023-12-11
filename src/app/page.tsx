@@ -1,36 +1,21 @@
 import BeerMap from "@/components/beer-map";
 import Logo from "@/components/logo";
 import type { bar } from "@/types/bar";
-import { getGoogleSheetData } from "@/utils/gsheets";
-
-const dummyBars: bar[] = [
-  {
-    name: "The Coachmakers Arms",
-    lat: 51.51712983648306,
-    long: -0.15060431327103696,
-    lastUpdated: "2021-09-01",
-    onTap: true,
-    onBottle: true,
-  },
-  {
-    name: "Niche",
-    lat: 51.52993804256535,
-    long: -0.10547969598650535,
-    lastUpdated: "2021-09-03",
-    onTap: false,
-    onBottle: true,
-  },
-];
+import { getGoogleSheetData } from "@/app/api/gsheets.ts/route";
 
 async function getBars() {
   const data = await getGoogleSheetData();
-  // TODO, you need to map this data to the bar type
-  return data;
+  console.log(data);
 }
 
 export default async function Home() {
-  const barData = await getBars();
-  console.log(barData);
+  let bars: bar[];
+  try {
+    bars = await getGoogleSheetData();
+  } catch (error) {
+    console.error("Error fetching bar data:", error);
+    bars = []; // Fallback to an empty array or handle the error as needed
+  }
 
   return (
     <main className="w-screen h-screen relative">
@@ -39,7 +24,7 @@ export default async function Home() {
           <Logo size={"64"} />
         </div>
       </div>
-      <BeerMap bars={dummyBars} />
+      <BeerMap bars={bars} />
     </main>
   );
 }
