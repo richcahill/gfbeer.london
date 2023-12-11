@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gfbeer.richmak.es"),
   title: "GF Beer London",
   description:
     "A map of all the pubs and bars around London that serve accredited gluten free beer.",
